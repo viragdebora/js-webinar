@@ -15,3 +15,48 @@
  *       the given name or throws an Erorr if it cannot
  *       find the element
  */
+const ElementFinder = require('../test/mock/ElementFinder');
+
+class Element {
+    constructor(name, locator) {
+        this.name = name;
+        this.locator = locator;
+
+        this.parent = null;
+        this.children = {};
+    }
+
+    setParent(parent) {
+        this.parent = parent;
+    }
+
+    addChildren(child) {
+        if (this.children.hasOwnProperty(child.name)) {
+            throw new Error("Child already added!")
+        }
+        this.children[child.name] = child;
+    }
+
+    get(name) {
+        if (!name){
+            return new ElementFinder(this.locator);
+        }
+        const flatChildren = {};
+
+        (function flatten(element) {
+            Object.keys(element.children).forEach(key => {
+                flatChildren[key] = element.children[key];
+
+                flatten(element.children[key]);
+            });
+        })(this);
+
+        if (flatChildren[name] && flatChildren[name] instanceof Element) {
+            return new ElementFinder(flatChildren[name].locator);
+        }
+
+        throw new Error("Child element was not found.");
+    }
+}
+
+module.exports = Element;

@@ -106,11 +106,12 @@ describe('Element Class', () => {
             element.addChildren(header);
             const child = new Element('Title', {css: 'h1'});
             header.addChildren(child);
-
-            const pElement = element.get('Title');
+            const footer = new Element('Footer', {css: 'footer'});
+            element.addChildren(footer);
+            const pElement = element.get('Footer');
 
             expect(pElement).to.be.instanceOf(ElementFinder);
-            expect(pElement.locator().css).to.equal('h1');
+            expect(pElement.locator().css).to.equal('footer');
         });
 
         it('should throw error if child element is not found', () => {
