@@ -33,6 +33,10 @@ class Layout extends Element {
         }
         this.children[child.name] = child;
     }
+
+    load() {
+        return this.url;
+    }
 }
 
 module.exports = Layout;
