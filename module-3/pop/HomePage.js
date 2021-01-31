@@ -6,9 +6,13 @@
 
 const homePage = new Layout("Home", "https://epam.com", { css: 'body' });
 
-const elementsContainer = new Element("Body", {css: 'body'});
-
-const navbar = new Element("Navbar", { css: 'header' });
+const navbar = new Elements("Navbar", { css: 'header' });
+const services = navbar.get("Services");
+const howWeDoIt = navbar.get("How We Do It");
+const ourWork = navbar.get("Our Work");
+const insights = navbar.get("Insights");
+const about = navbar.get("About");
+const careers = navbar.get("Careers");
 
 const backgroundVideo = new Element("Background Video", { css: 'background-video-ui background-video--narrow' });
 const sliderTitle = new Element("Slider Title", { css: 'header' });
@@ -16,8 +20,9 @@ backgroundVideo.addChildren(sliderTitle);
 
 const footer = new Element("Footer", { css: 'footer' });
 
-elementsContainer.addChildren(navbar);
-elementsContainer.addChildren(backgroundVideo);
-elementsContainer.addChildren(footer);
-homePage.addChildren(elementsContainer);
+homePage.addChildren(navbar);
+homePage.addChildren(backgroundVideo);
+homePage.addChildren(footer);
+
+module.export = homePage;
 
