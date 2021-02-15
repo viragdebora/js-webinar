@@ -1,7 +1,7 @@
 [
     {
         "arguments": ["hello"],
-        "result": ""
+        "result": "hello"
     },
     {
         "arguments": [[]],
