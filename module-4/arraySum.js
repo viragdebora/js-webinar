@@ -11,15 +11,19 @@ function arraySum(elements) {
     if (!Array.isArray(elements) || elements.length === 0) {
         return 0;
     }
-    let sum = 0;
-    for (let e of elements) {
-        if (typeof e === "number") {
-            sum += e;
-        } else if (Array.isArray(e)) {
-            sum += arraySum(e);
-        }
-    }
-    return sum;
+    
+    return elements
+        .reduce((sum, actual) => {
+            if (typeof actual === "number") {
+                return sum + actual;
+            } else if (Array.isArray(actual)) {
+                return sum + arraySum(actual);
+            } else {
+                return sum;
+            }
+        }, 0);
+
+
 }
 
 module.exports = arraySum;
